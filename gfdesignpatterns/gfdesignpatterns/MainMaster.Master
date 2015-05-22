@@ -1,0 +1,36 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MainMaster.master.cs" Inherits="gfdesignpatterns.MainMaster" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <link rel="stylesheet" type="text/css" href="mainCss.css" />\
+    <link rel="stylesheet" href="addons/bootsrap.min.css" />
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div class="mainDiv center" >
+         Header
+        <hr />
+        <div>
+
+        <asp:ContentPlaceHolder ID="body" runat="server">
+        </asp:ContentPlaceHolder>
+        </div>
+    </div>
+    </form>
+
+            <asp:ContentPlaceHolder ID="scripts" runat="server">
+        </asp:ContentPlaceHolder>
+    <div class="mainDiv center">
+    <hr />
+    Footer
+        <script src="addons/angular.min.js"></script>
+        <script src="bootsrap.min.js"></script>
+        <script src="bootsrap.min.js.map"></script>
+</div>
+</body>
+</html>
