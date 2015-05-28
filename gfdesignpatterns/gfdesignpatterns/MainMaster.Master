@@ -4,8 +4,8 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <link rel="stylesheet" type="text/css" href="mainCss.css" />\
-    <link rel="stylesheet" href="addons/bootsrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="mainCss.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <title></title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
@@ -13,7 +13,9 @@
 <body>
     <form id="form1" runat="server">
     <div class="mainDiv center" >
-         Header
+         <button type="button" class="btn btn-primary">Movies</button>
+        <br />
+        <img class="img-rounded" style='width:100%; height:200px; overflow:hidden' src="https://mlcarmon.expressions.syr.edu/trfindustryforces/wp-content/uploads/sites/2/2014/10/7f017abb-f3d9-40c4-a841-d9d686dc9a56-Pixar-Movies.jpeg" />
         <hr />
         <div>
 
@@ -28,9 +30,9 @@
     <div class="mainDiv center">
     <hr />
     Footer
-        <script src="addons/angular.min.js"></script>
-        <script src="bootsrap.min.js"></script>
-        <script src="bootsrap.min.js.map"></script>
+        <script src="/addons/angular.min.js"></script>
+        <script src="/addons/bootsrap.min.js.map"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 </div>
 </body>
 </html>
