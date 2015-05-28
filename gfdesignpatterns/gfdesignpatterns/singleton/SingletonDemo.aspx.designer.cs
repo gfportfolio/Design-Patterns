@@ -11,7 +11,7 @@ namespace gfdesignpatterns.singleton
 {
 
 
-    public partial class singletonexample
+    public partial class SingletonDemo
     {
     }
 }

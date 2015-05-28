@@ -9,7 +9,7 @@ namespace gfdesignpatterns.singleton
     {
         private static Singleton _singleton;
         private int singletonCounter = 0;
-        public Singleton singleton
+        public static Singleton Instance
         {
             get
             {
