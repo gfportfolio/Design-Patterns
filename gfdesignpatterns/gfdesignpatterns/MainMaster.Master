@@ -6,33 +6,35 @@
 <head runat="server">
     <link rel="stylesheet" type="text/css" href="mainCss.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <title></title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 <body>
     <form id="form1" runat="server">
-    <div class="mainDiv center" >
-         <button type="button" class="btn btn-primary">Movies</button>
-        <br />
-        <img class="img-rounded" style='width:100%; height:200px; overflow:hidden' src="https://mlcarmon.expressions.syr.edu/trfindustryforces/wp-content/uploads/sites/2/2014/10/7f017abb-f3d9-40c4-a841-d9d686dc9a56-Pixar-Movies.jpeg" />
-        <hr />
-        <div>
+        <div class="mainDiv center">
 
-        <asp:ContentPlaceHolder ID="body" runat="server">
-        </asp:ContentPlaceHolder>
+            <button type="button" class="btn btn-primary margin" onclick="window.location.href='/default.aspx'">Home</button>
+
+            <button type="button" class="btn btn-primary margin" onclick="window.location.href='/singleton/SingletonDemo.aspx'">Singleton</button>
+            <img class="img-rounded margin" style='width: 100%; height: 200px; overflow: hidden' src="https://mlcarmon.expressions.syr.edu/trfindustryforces/wp-content/uploads/sites/2/2014/10/7f017abb-f3d9-40c4-a841-d9d686dc9a56-Pixar-Movies.jpeg" />
+            <hr />
+            <div>
+
+                <asp:ContentPlaceHolder ID="body" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
         </div>
-    </div>
     </form>
 
-            <asp:ContentPlaceHolder ID="scripts" runat="server">
-        </asp:ContentPlaceHolder>
     <div class="mainDiv center">
-    <hr />
-    Footer
-        <script src="/addons/angular.min.js"></script>
-        <script src="/addons/bootsrap.min.js.map"></script>
+        <hr />
+        <%--Footer--%>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-</div>
+        <asp:ContentPlaceHolder ID="scripts" runat="server">
+        </asp:ContentPlaceHolder>
+    </div>
 </body>
 </html>

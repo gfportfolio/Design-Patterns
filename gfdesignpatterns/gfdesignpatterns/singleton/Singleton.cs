@@ -8,21 +8,22 @@ namespace gfdesignpatterns.singleton
     public class Singleton
     {
         private static Singleton _singleton;
-        private int singletonCounter = 0;
+        protected static int singletonCounter = 0;
         public static Singleton Instance
         {
             get
             {
+                //reset  new Singleton((singletonCounter++), "singletonTest");
                 if (_singleton == null)
                 {
-                    _singleton = new Singleton();
+                    _singleton = new Singleton((singletonCounter++), "singletonTest");
                 }
 
                 return _singleton;
 
             }
         }
-        
+
 
         private Singleton(int id, string name)
         {
@@ -35,7 +36,6 @@ namespace gfdesignpatterns.singleton
             addMovie("Bugs Life", 1998);
             addShorts("Luxo Jr.", 1986);
             addShorts("The Blue Umbrella", 2013);
-            //TODO constructer
         }
 
         private int _id;
@@ -43,8 +43,9 @@ namespace gfdesignpatterns.singleton
         private List<show> _movies;
         private List<show> _shorts;
 
-        public int id { 
-            get { return _id; } 
+        public int id
+        {
+            get { return _id; }
         }
 
         public string name
@@ -76,6 +77,7 @@ namespace gfdesignpatterns.singleton
             var newShow = new show();
             newShow.name = name;
             newShow.year = year;
+            return newShow;
         }
 
 
