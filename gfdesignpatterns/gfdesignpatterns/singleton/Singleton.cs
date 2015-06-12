@@ -13,7 +13,7 @@ namespace gfdesignpatterns.singleton
         {
             get
             {
-                //reset  new Singleton((singletonCounter++), "singletonTest");
+
                 if (_singleton == null)
                 {
                     _singleton = new Singleton((singletonCounter++), "singletonTest");
@@ -42,6 +42,7 @@ namespace gfdesignpatterns.singleton
         private string _name;
         private List<show> _movies;
         private List<show> _shorts;
+
 
         public int id
         {
