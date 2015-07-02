@@ -63,6 +63,7 @@
     <Content Include="addons\bootstrap.min.js" />
     <Content Include="addons\test.aspx" />
     <Content Include="builder\BuilderDemo.aspx" />
+    <Content Include="Factory\FactoryDemo.aspx" />
     <Content Include="MainMaster.Master" />
     <Content Include="addons\angular.min.js.map" />
     <None Include="Web.Debug.config">
@@ -100,6 +101,14 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Factory\factory.cs" />
+    <Compile Include="Factory\FactoryDemo.aspx.cs">
+      <DependentUpon>FactoryDemo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Factory\FactoryDemo.aspx.designer.cs">
+      <DependentUpon>FactoryDemo.aspx</DependentUpon>
     </Compile>
     <Compile Include="MainMaster.Master.cs">
       <DependentUpon>MainMaster.Master</DependentUpon>
