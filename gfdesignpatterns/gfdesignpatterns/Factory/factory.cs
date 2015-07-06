@@ -7,7 +7,7 @@ namespace gfdesignpatterns.Factory
 {
     public abstract class Show
     {
-        protected List<string> movieNames = new List<string>{"Toy", "Story", "A", "Bug's", "Life", "2", "Monsters,", "Inc.", "Finding", "Nemo", "The", "Incredibles", "Cars", "Ratatouille", "WALL-E", "Up", "3", "Brave", "University", "Inside", "Out"};
+        protected List<string> movieNames = new List<string>{"Toy", "Story", "A", "Bug's", "Life", "2", "Monsters", "Inc.", "Finding", "Nemo", "The", "Incredibles", "Cars", "Ratatouille", "WALL-E", "Up", "3", "Brave", "University", "Inside", "Out"};
         protected List<string> shortNames = new List<string>{"The", "Adventures", "of", "André", "and", "Wally", "Luxo", "Jr.", "Red's", "Dream", "Tin", "Toy", "Knick", "Knack", "Geri's", "Game", "For", "Birds", "Boundin'", "One", "Man", "Band", "Lifted", "Presto", "Partly", "Cloudy", "Day", "&", "Night", "La", "Luna", "Blue", "Umbrella", "Lava", "Sanjay's", "Super", "Team", "Mike's", "New", "Car", "Jack-Jack", "Attack", "Mater", "Ghostlight", "Your", "Friend", "Rat", "BURN-E", "Dug's", "Special", "Mission", "George", "A.J.", "Legend", "Mor'du", "Party", "Central"};
 
         public abstract string type { get; }
@@ -21,7 +21,7 @@ namespace gfdesignpatterns.Factory
                 Random gen = new Random();
                 int range = (20);
                 var newdate= start.AddYears(gen.Next(range));
-                return newdate.Year.ToString();
+                return (gen.Next(range) + 2015).ToString();
             }
 
         }
