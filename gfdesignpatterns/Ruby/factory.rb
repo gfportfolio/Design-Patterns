@@ -1,5 +1,4 @@
 class Show
-require 'date'
 	def initialize()
 
 		rand = Random.new()
