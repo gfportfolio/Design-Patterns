@@ -7,7 +7,7 @@ D:\DesignPatterns\gfdesignpatterns\gfdesignpatterns\obj\Debug\gfdesignpatterns.p
 D:\DesignPatterns\Design-Patterns\gfdesignpatterns\gfdesignpatterns\bin\gfdesignpatterns.dll.config
 D:\DesignPatterns\Design-Patterns\gfdesignpatterns\gfdesignpatterns\bin\gfdesignpatterns.dll
 D:\DesignPatterns\Design-Patterns\gfdesignpatterns\gfdesignpatterns\bin\gfdesignpatterns.pdb
-D:\DesignPatterns\Design-Patterns\gfdesignpatterns\gfdesignpatterns\obj\Debug\gfdesignpatterns.csprojResolveAssemblyReference.cache
 D:\DesignPatterns\Design-Patterns\gfdesignpatterns\gfdesignpatterns\obj\Debug\gfdesignpatterns.dll
 D:\DesignPatterns\Design-Patterns\gfdesignpatterns\gfdesignpatterns\obj\Debug\gfdesignpatterns.pdb
 D:\DesignPatterns\Design-Patterns\gfdesignpatterns\gfdesignpatterns\bin\Newtonsoft.Json.dll
+D:\DesignPatterns\Design-Patterns\gfdesignpatterns\gfdesignpatterns\obj\Debug\gfdesignpatterns.csprojResolveAssemblyReference.cache
