@@ -30,9 +30,9 @@ namespace gfdesignpatterns.observer
 
 
         public string name { get { return _name; } }
-        public bool started { get { return _started; } }
+        public bool started { get { return _started; } set { _started = value; } }
         public DateTime? endTime { get { return _endTime; } set { _endTime = value; } }
-        public DateTime? startTime { get { return _startTime; } }
+        public DateTime? startTime { get { return _startTime; } set { _startTime = value; } }
         public bool ended { get { return _ended; } }
         public int theatreNumber { get { return _theatreNumber; } }
     }
@@ -81,6 +81,7 @@ namespace gfdesignpatterns.observer
 
         public void TheatreStatus(string name, int theatreNumber, bool started, bool ended, DateTime? startTime = null)
         {
+
             var info = new MovieInfo(name, theatreNumber, started, ended, startTime);
             if (!started && !ended)
             {
@@ -96,6 +97,7 @@ namespace gfdesignpatterns.observer
                 var startedMovies = movies.Where(t => t.name == info.name && t.theatreNumber == info.theatreNumber);
                 foreach (var movie in startedMovies)
                 {
+                    info.startTime = movie.startTime;
                     //movie.started = true;
                 }
                 foreach (var observer in observers)
@@ -131,8 +133,9 @@ namespace gfdesignpatterns.observer
     {
         private List<IObserver<MovieInfo>> _observers;
         private IObserver<MovieInfo> _observer;
- 
-        internal Unsubscriber(List<IObserver<MovieInfo>> observers, IObserver<MovieInfo> observer){
+
+        internal Unsubscriber(List<IObserver<MovieInfo>> observers, IObserver<MovieInfo> observer)
+        {
             this._observers = observers;
             this._observer = observer;
         }
@@ -153,7 +156,7 @@ namespace gfdesignpatterns.observer
         private IDisposable cancellation;
         private string _monitorText;
 
-        public string monitorText{get{return _monitorText;}}
+        public string monitorText { get { return _monitorText; } }
 
         public MovieMonitor(string name)
         {
@@ -195,7 +198,7 @@ namespace gfdesignpatterns.observer
                 var flightsToRemove = movieInfos.Where(t => t.name == value.name && t.theatreNumber == value.theatreNumber);
                 if (flightsToRemove.Count() > 0)
                 {
-                    movieInfos.All(t=>flightsToRemove.Contains(t));
+                    movieInfos.RemoveAll(t => flightsToRemove.Contains(t));
                     updated = true;
                 }
             }
@@ -210,27 +213,69 @@ namespace gfdesignpatterns.observer
 
             if (updated)
             {
-            _monitorText = printMovieInfo(movieInfos);
+                _monitorText = printMovieInfo(movieInfos);
             }
         }
 
         public string printMovieInfo(List<MovieInfo> movieInfos)
         {
-            string s="";
-            foreach(var movieInfo in movieInfos){
-                s+=movieInfo.name+" theatre # "+movieInfo.theatreNumber;
-                if(movieInfo.started){
-                   s+=" Starts At ";
+            string s = "";
+            foreach (var movieInfo in movieInfos)
+            {
+                s += movieInfo.name + " is playing in theatre # " + movieInfo.theatreNumber;
+                if (!movieInfo.started)
+                {
+                    s += " starts At ";
                 }
-                else{
-                    s += " Started At ";
+                else
+                {
+                    s += " started At ";
                 }
-                s+=""+String.Format("{0:t}",movieInfo.startTime);
-                s += Environment.NewLine;
+                s += "" + String.Format("{0:t}", movieInfo.startTime);
+                s += "<br><br>";
             }
             return s;
         }
 
     }
+
+
+    public class ObserverProvider
+    {
+        private static observerSingletonPoco _observerProvider;
+        public static observerSingletonPoco Instance
+        {
+            get
+            {
+
+                if (_observerProvider == null)
+                {
+                    _observerProvider = new observerSingletonPoco();
+                    _observerProvider.provider = new MovieTheathre();
+                    _observerProvider.observer1 = new MovieMonitor("Pixar Monitor");
+                    _observerProvider.observer2 = new MovieMonitor("Disney Monitor");
+                }
+
+                return _observerProvider;
+
+            }
+        }
+
+        public static void reset()
+        {
+            _observerProvider = null;
+        }
+
+
+        public class observerSingletonPoco
+        {
+            public MovieTheathre provider;
+            public MovieMonitor observer1;
+            public MovieMonitor observer2;
+        }
+
+    }
 }
+
+
 

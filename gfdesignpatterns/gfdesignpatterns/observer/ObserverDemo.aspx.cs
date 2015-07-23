@@ -11,33 +11,81 @@ namespace gfdesignpatterns.observer
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            MovieTheathre provider = new MovieTheathre();
-            MovieMonitor observer1 = new MovieMonitor("Pixar Monitor");
-            MovieMonitor observer2 = new MovieMonitor("Disney Monitor");
+            if (IsPostBack)
+            {
+                return;
 
-            provider.newMovie("Inside Out", 3, new DateTime(2015, 7, 20, 8, 15,0));
-            observer1.Subscribe(provider);
-            var text = observer1.monitorText;
-            text = observer2.monitorText;
-            provider.newMovie("Frozen", 1, new DateTime(2015, 7, 20, 6, 10,0));
-            provider.newMovie("Cinderella", 3, new DateTime(2015, 7, 20, 9, 35,0));
-            provider.newMovie("Wreck It Ralf", 6, new DateTime(2015, 7, 20, 10, 50,0));
-            observer2.Subscribe(provider);
-            text = observer1.monitorText;
-            text = observer2.monitorText;
-            provider.movieStarted("Frozen", 1);
-            provider.movieStarted("Cinderella", 3);
-            observer2.Unsubscribe();
-            text = observer1.monitorText;
-            text = observer2.monitorText;
-            provider.movieOver("Cinderella", 3);
-            text = observer1.monitorText;
-            text = observer2.monitorText;
+            }
+            ObserverProvider.reset();
+            var observerProvider = ObserverProvider.Instance;
+
+            observerProvider.provider.newMovie("Inside Out", 3, new DateTime(2015, 7, 20, 8, 15,0));
+            observerProvider.observer1.Subscribe(observerProvider.provider);
+            observerProvider.provider.newMovie("Wreck It Ralf", 6, new DateTime(2015, 7, 20, 10, 50,0));
+            observerProvider.observer2.Subscribe(observerProvider.provider);
+            updateText(observerProvider);
+
+            
 
 
+        }
 
+        private void updateText(ObserverProvider.observerSingletonPoco observerProvider)
+        {
+            observer1lb.Text = observerProvider.observer1.monitorText;
+            observer2lb.Text = observerProvider.observer2.monitorText;
+        }
 
+        protected void startFrozen_Click(object sender, EventArgs e)
+        {
+            var observerProvider = ObserverProvider.Instance;
+            observerProvider.provider.movieStarted("Frozen", 1);
+            observerProvider.observer2.Subscribe(observerProvider.provider);
+            updateText(observerProvider);
+        }
 
+        protected void endFrozen_Click(object sender, EventArgs e)
+        {
+            var observerProvider = ObserverProvider.Instance;
+            observerProvider.provider.movieOver("Frozen", 1);
+            updateText(observerProvider);
+        }
+
+        protected void startWreckItRalf_Click(object sender, EventArgs e)
+        {
+            var observerProvider = ObserverProvider.Instance;
+            observerProvider.provider.movieStarted("Wreck It Ralf", 6);
+            updateText(observerProvider);
+        }
+
+        protected void addFrozen_Click(object sender, EventArgs e)
+        {
+            var observerProvider = ObserverProvider.Instance;
+            observerProvider.provider.newMovie("Frozen", 1, new DateTime(2015, 7, 20, 6, 10, 0));
+            observerProvider.observer2.Subscribe(observerProvider.provider);
+            updateText(observerProvider);
+        }
+
+        protected void addCinderella_Click(object sender, EventArgs e)
+        {
+            var observerProvider = ObserverProvider.Instance;
+            observerProvider.provider.newMovie("Cinderella", 3, new DateTime(2015, 7, 20, 9, 35, 0));
+            observerProvider.observer2.Subscribe(observerProvider.provider);
+            updateText(observerProvider);
+        }
+
+        protected void startInsideOut_Click(object sender, EventArgs e)
+        {
+            var observerProvider = ObserverProvider.Instance;
+            observerProvider.provider.movieStarted("Inside Out", 3);
+            updateText(observerProvider);
+        }
+
+        protected void turnOffScreen2_Click(object sender, EventArgs e)
+        {
+            var observerProvider = ObserverProvider.Instance;
+            observerProvider.observer2.Unsubscribe();
+            updateText(observerProvider);
         }
     }
 }
