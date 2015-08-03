@@ -30,6 +30,9 @@
                 <div class="btn-group" role="group">
                     <button type="button" class="btn btn-primary margin pull-left" onclick="window.location.href='/observer/ObserverDemo.aspx'">Observer</button>
                 </div>
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-primary margin pull-left" onclick="window.location.href='/flyweight/FlyweightDemo.aspx'">Flyweight</button>
+                </div>
 
             </div>
             <img class="img-rounded margin" style='width: 100%; height: 200px; overflow: hidden' src="https://mlcarmon.expressions.syr.edu/trfindustryforces/wp-content/uploads/sites/2/2014/10/7f017abb-f3d9-40c4-a841-d9d686dc9a56-Pixar-Movies.jpeg" />
