@@ -131,7 +131,7 @@ namespace gfdesignpatterns.flyweight
         private int _life;
         public int life { get { return _life; } set { _life = value; } }
         private int _strength;
-        public int strenth { get { return _strength; } }
+        public int strength { get { return _strength; } }
         private string _name;
         public string name { get { return _name; } }
         private bool _alive;
@@ -142,10 +142,10 @@ namespace gfdesignpatterns.flyweight
         public string image { get { return _image; } }
 
 
-        public player(int life, int strenth, string name, string image)
+        public player(int life, int strength, string name, string image)
         {
             _life = life;
-            _strength = strenth;
+            _strength = strength;
             _name = name;
             _alive = true;
             _image = image;
@@ -153,7 +153,7 @@ namespace gfdesignpatterns.flyweight
 
         public void battle(int attackerPower)
         {
-            life -= attackerPower / strenth;
+            life -= attackerPower / strength;
             if (life <= 0)
             {
                 alive = false;
@@ -163,7 +163,7 @@ namespace gfdesignpatterns.flyweight
 
         public int getPower()
         {
-            return strenth * life;
+            return strength * life;
         }
 
         public string printStatus()
@@ -182,7 +182,7 @@ namespace gfdesignpatterns.flyweight
 
     public class goodPlayer : player
     {
-        public goodPlayer(int life, int strenth, string name,  string image) : base(life, strenth, name,  image)
+        public goodPlayer(int life, int strength, string name,  string image) : base(life, strength, name,  image)
         {
             base.good = true;
         }
@@ -190,7 +190,7 @@ namespace gfdesignpatterns.flyweight
 
     public class badPlayer : player
     {
-        public badPlayer(int life, int strenth, string name, string image) : base(life, strenth, name, image)
+        public badPlayer(int life, int strength, string name, string image) : base(life, strength, name, image)
         {
             base.good = false;
         }

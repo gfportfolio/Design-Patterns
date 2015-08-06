@@ -33,7 +33,7 @@
             <div ng-repeat="player in goodPlayers">
                 <h3>
                     <img ng-src="{{player.image}}" class="flighweight_image_small img-circle" />
-                    {{player.name}}: Life {{player.life}} :Strength {{player.strenth}}</h3>
+                    {{player.name}}: Life {{player.life}} :Strength {{player.strength}}</h3>
             </div>
         </div>
         <div style="float: left; width: 50%">
@@ -42,7 +42,7 @@
             <div ng-repeat="player in badPlayers">
                 <h3>
                     <img ng-src="{{player.image}}" class="flighweight_image_small img-circle" />
-                    {{player.name}}: Life {{player.life}} :Strength {{player.strenth}}</h3>
+                    {{player.name}}: Life {{player.life}} :Strength {{player.strength}}</h3>
             </div>
         </div>
     </div>
