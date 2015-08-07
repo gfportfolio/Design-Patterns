@@ -7,6 +7,19 @@ namespace gfdesignpatterns.flyweight
 {
     public class Flyweight
     {
+        public static List<pawnPOCO> pawns = new List<pawnPOCO>{
+            new pawnPOCO("Hamm", "http://a.dilcdn.com/bl/wp-content/uploads/sites/2/2013/07/HammPirate.jpg"),
+            new pawnPOCO("Witch",  "http://cdn04.cdn.justjaredjr.com/wp-content/uploads/headlines/2012/06/meet-brave-witch.jpg"),
+            new pawnPOCO("Syndrome",  "http://icant.co.uk/talks/h5/pictures/senchacon/syndrome-closeup.jpg"),
+            new pawnPOCO("Chick",  "http://vignette2.wikia.nocookie.net/pixar/images/1/17/Cars-the-movie-chick-hicks.jpg/revision/latest?cb=20140413122344"),
+            new pawnPOCO("Randell",  "http://ia.media-imdb.com/images/M/MV5BMjEzODE1NDMxMF5BMl5BanBnXkFtZTYwNTIwODA3._V1_SX640_SY720_.jpg"),
+            new pawnPOCO("Woody",  "http://img3.wikia.nocookie.net/__cb20131121214608/disney/images/a/a5/Woody_Promational_Art.jpg"),
+            new pawnPOCO("Marida",  "http://24.media.tumblr.com/tumblr_lw5pwd4crV1r6g6cuo1_500.png"),
+            new pawnPOCO("Dash",  "http://www.writeups.org/img/fiche/2861c.jpg"),
+            new pawnPOCO("Lightning", "http://vignette2.wikia.nocookie.net/maditsmadfunny/images/2/29/Lightning_McQueen_Cars_2.png/revision/latest?cb=20130429200451"),
+            new pawnPOCO("Sully",  "http://img3.wikia.nocookie.net/__cb20130414194442/disney/images/3/3b/Sully.png")
+        };
+
         public static Flyweight _flyweight;
         public List<player> _badPlayers;
         public List<player> _goodPlayers;
@@ -26,6 +39,9 @@ namespace gfdesignpatterns.flyweight
 
             }
         }
+
+
+
         public static void reset()
         {
             _flyweight = null;
@@ -46,18 +62,12 @@ namespace gfdesignpatterns.flyweight
         public  Flyweight()
         {
             players = new List<player>();
+            for(int i = 0; i < 5; i++)
+            {
+                players.Add(new player(pawns.Count(), true));
+                players.Add(new player(pawns.Count(), false));
 
-            players.Add(new goodPlayer(20, 5, "Woody",  "http://img3.wikia.nocookie.net/__cb20131121214608/disney/images/a/a5/Woody_Promational_Art.jpg"));
-            players.Add(new goodPlayer(20, 12, "Marida",  "http://24.media.tumblr.com/tumblr_lw5pwd4crV1r6g6cuo1_500.png"));
-            players.Add(new goodPlayer(20, 8, "Dash",  "http://www.writeups.org/img/fiche/2861c.jpg"));
-            players.Add(new goodPlayer(20, 10, "Lightning", "http://vignette2.wikia.nocookie.net/maditsmadfunny/images/2/29/Lightning_McQueen_Cars_2.png/revision/latest?cb=20130429200451"));
-            players.Add(new goodPlayer(20, 15, "Sully",  "http://img3.wikia.nocookie.net/__cb20130414194442/disney/images/3/3b/Sully.png"));
-          
-            players.Add(new badPlayer(20, 3, "Hamm", "http://a.dilcdn.com/bl/wp-content/uploads/sites/2/2013/07/HammPirate.jpg"));
-            players.Add(new badPlayer(20, 11, "Witch",  "http://cdn04.cdn.justjaredjr.com/wp-content/uploads/headlines/2012/06/meet-brave-witch.jpg"));
-            players.Add(new badPlayer(20, 10, "Syndrome",  "http://icant.co.uk/talks/h5/pictures/senchacon/syndrome-closeup.jpg"));
-            players.Add(new badPlayer(20, 13, "Chick",  "http://vignette2.wikia.nocookie.net/pixar/images/1/17/Cars-the-movie-chick-hicks.jpg/revision/latest?cb=20140413122344"));
-            players.Add(new badPlayer(20, 8, "Randell",  "http://ia.media-imdb.com/images/M/MV5BMjEzODE1NDMxMF5BMl5BanBnXkFtZTYwNTIwODA3._V1_SX640_SY720_.jpg"));
+            }
 
         }
 
@@ -126,29 +136,37 @@ namespace gfdesignpatterns.flyweight
         }
     }
 
-    public abstract class player
+    public class player
     {
         private int _life;
         public int life { get { return _life; } set { _life = value; } }
         private int _strength;
-        public int strength { get { return _strength; } }
-        private string _name;
-        public string name { get { return _name; } }
+        public int strength { get { return _strength; }  }
         private bool _alive;
         public bool alive { get { return _alive; } set { _alive = value; } }
         private bool _good;
-        public bool good { get { return _good; }  set { _good = value; } }
+        public bool good { get { return _good; }  }
         private string _image;
-        public string image { get { return _image; } }
+        public string image { get { return Flyweight.pawns[_pawnId].Url; }}
+        private string _name;
+        public string name { get { return Flyweight.pawns[_pawnId].Name; }  }
+        private int _pawnId;
+        public int pawnId { get { return _pawnId; }  }
 
 
-        public player(int life, int strength, string name, string image)
+        public player(int possiblePawnsCount, bool isGood)
         {
-            _life = life;
-            _strength = strength;
-            _name = name;
-            _alive = true;
-            _image = image;
+            _strength = 20;
+            alive = true;
+            Random rnd = new Random();
+            _good = isGood;
+
+            _pawnId = rnd.Next(possiblePawnsCount/2);
+            if (isGood)
+            {
+                _pawnId += possiblePawnsCount / 2;
+            }
+            life = rnd.Next(20);
         }
 
         public void battle(int attackerPower)
@@ -180,19 +198,15 @@ namespace gfdesignpatterns.flyweight
 
     }
 
-    public class goodPlayer : player
-    {
-        public goodPlayer(int life, int strength, string name,  string image) : base(life, strength, name,  image)
-        {
-            base.good = true;
-        }
-    }
 
-    public class badPlayer : player
+    public class pawnPOCO
     {
-        public badPlayer(int life, int strength, string name, string image) : base(life, strength, name, image)
+        public string Name;
+        public string Url;
+        public pawnPOCO(string name, string url)
         {
-            base.good = false;
+            Name = name;
+            Url = url;
         }
     }
 }
