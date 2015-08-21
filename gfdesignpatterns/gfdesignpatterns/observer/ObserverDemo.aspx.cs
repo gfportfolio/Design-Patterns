@@ -19,10 +19,10 @@ namespace gfdesignpatterns.observer
             ObserverProvider.reset();
             var observerProvider = ObserverProvider.Instance;
 
-            observerProvider.provider.newMovie("Inside Out", 3, new DateTime(2015, 7, 20, 8, 15,0));
             observerProvider.observer1.Subscribe(observerProvider.provider);
-            observerProvider.provider.newMovie("Wreck It Ralf", 6, new DateTime(2015, 7, 20, 10, 50,0));
             observerProvider.observer2.Subscribe(observerProvider.provider);
+            observerProvider.provider.newMovie("Inside Out", 3, new DateTime(2015, 7, 20, 8, 15,0));
+            observerProvider.provider.newMovie("Wreck It Ralf", 6, new DateTime(2015, 7, 20, 10, 50,0));
             updateText(observerProvider);
 
             
@@ -40,7 +40,6 @@ namespace gfdesignpatterns.observer
         {
             var observerProvider = ObserverProvider.Instance;
             observerProvider.provider.movieStarted("Frozen", 1);
-            observerProvider.observer2.Subscribe(observerProvider.provider);
             updateText(observerProvider);
         }
 
@@ -62,7 +61,6 @@ namespace gfdesignpatterns.observer
         {
             var observerProvider = ObserverProvider.Instance;
             observerProvider.provider.newMovie("Frozen", 1, new DateTime(2015, 7, 20, 6, 10, 0));
-            observerProvider.observer2.Subscribe(observerProvider.provider);
             updateText(observerProvider);
         }
 
@@ -70,7 +68,6 @@ namespace gfdesignpatterns.observer
         {
             var observerProvider = ObserverProvider.Instance;
             observerProvider.provider.newMovie("Cinderella", 3, new DateTime(2015, 7, 20, 9, 35, 0));
-            observerProvider.observer2.Subscribe(observerProvider.provider);
             updateText(observerProvider);
         }
 

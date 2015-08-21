@@ -24,8 +24,10 @@ class MovieInfo
 	@startTime = startTime
 	@started = false
 	@ended = false
-	add_observer(Notifier.new())
-	add_observer(Notifier.new())
+	@observer1 = Notifier.new()
+	@observer2 = Notifier.new()
+	add_observer(@observer1)
+	add_observer(@observer2)
 	changed
 	notify_observers(self)
 	end
@@ -42,6 +44,10 @@ class MovieInfo
 		notify_observers(self)
 	end
 	
+	def removeObserver()
+		delete_observer(@observer2)
+	end
+	
 end
 
 insideOutMovie = MovieInfo.new("Inside Out", 3, "8:55 PM")
@@ -50,10 +56,11 @@ insideOut2Movie = MovieInfo.new("Inside Out", 1,"7:20 PM")
 cinderellaMovie = MovieInfo.new("Cinderella", 8, "9:30 PM")
 frozenMovie = MovieInfo.new("Frozen", 5,"6:50 PM")
 puts "\n"
-insideOutMovie.start();
+insideOutMovie.start()
 puts "\n"
-wreckItRalfMovie.start();
+wreckItRalfMovie.start()
 puts "\n"
 cinderellaMovie.start()
 puts "\n"
+insideOutMovie.removeObserver()
 insideOutMovie.end()

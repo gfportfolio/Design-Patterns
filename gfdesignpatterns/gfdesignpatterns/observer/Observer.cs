@@ -13,10 +13,6 @@ namespace gfdesignpatterns.observer
         private int _theatreNumber;
         private DateTime? _startTime;
         private DateTime? _endTime;
-        private string name1;
-        private int theatreNumber1;
-        private bool started1;
-        private bool ended1;
 
         public MovieInfo(string name, int theatre, bool start, bool end, DateTime? startTime)
         {
