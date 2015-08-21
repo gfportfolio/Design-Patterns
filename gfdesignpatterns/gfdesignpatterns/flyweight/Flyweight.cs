@@ -7,6 +7,7 @@ namespace gfdesignpatterns.flyweight
 {
     public class Flyweight
     {
+        //flyweight Object
         public static List<pawnPOCO> pawns = new List<pawnPOCO>{
             new pawnPOCO("Hamm", "http://a.dilcdn.com/bl/wp-content/uploads/sites/2/2013/07/HammPirate.jpg"),
             new pawnPOCO("Witch",  "http://cdn04.cdn.justjaredjr.com/wp-content/uploads/headlines/2012/06/meet-brave-witch.jpg"),
@@ -62,18 +63,20 @@ namespace gfdesignpatterns.flyweight
         public  Flyweight()
         {
             players = new List<player>();
-            for(int i = 0; i < 5; i++)
+            Random rnd = new Random();
+            for (int i = 0; i < 5; i++)
             {
-                players.Add(new player(pawns.Count(), true));
-                players.Add(new player(pawns.Count(), false));
+                players.Add(new player(pawns.Count(), true, rnd));
+                players.Add(new player(pawns.Count(), false, rnd));
 
             }
 
         }
 
-        public string round(string playerName)
+        public string round(int playerNumber)
         {
-            var goodPlayer = players.FirstOrDefault(t => t.name.Equals(playerName));
+            var goodPlayers = players.Where(t => t.good);
+            var goodPlayer = players.ElementAt(getCurrentPosition(players, goodPlayers.ElementAt(playerNumber)));
             if (!goodPlayer.alive)
             {
                 return goodPlayer.name+" is Dead and can not go to battle.";
@@ -146,19 +149,17 @@ namespace gfdesignpatterns.flyweight
         public bool alive { get { return _alive; } set { _alive = value; } }
         private bool _good;
         public bool good { get { return _good; }  }
-        private string _image;
         public string image { get { return Flyweight.pawns[_pawnId].Url; }}
-        private string _name;
         public string name { get { return Flyweight.pawns[_pawnId].Name; }  }
         private int _pawnId;
         public int pawnId { get { return _pawnId; }  }
 
 
-        public player(int possiblePawnsCount, bool isGood)
+        public player(int possiblePawnsCount, bool isGood, Random rnd)
         {
             _strength = 20;
             alive = true;
-            Random rnd = new Random();
+            
             _good = isGood;
 
             _pawnId = rnd.Next(possiblePawnsCount/2);

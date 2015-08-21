@@ -10,6 +10,8 @@ namespace gfdesignpatterns.flyweight
 {
     public partial class FlyweightDemo : System.Web.UI.Page
     {
+
+
         public string JsonGoodPlayers = "";
         public string JsonBadPlayers = "";
         protected void Page_Load(object sender, EventArgs e)
@@ -20,7 +22,7 @@ namespace gfdesignpatterns.flyweight
             }
             Flyweight.reset();
             var flyweight = Flyweight.Instance;
-
+            
             setupJson(flyweight.goodPlayers, flyweight.badPlayers);
 
         }
@@ -33,9 +35,10 @@ namespace gfdesignpatterns.flyweight
 
         protected void playerButton_Click(object sender, EventArgs e)
         {
-            var name = ((Button)sender).ID;
+            var buttonId = ((Button)sender).ID;
+            var number = int.Parse(buttonId.Remove(0, 6));
             var flyweight = Flyweight.Instance;
-            var result = flyweight.round(name);
+            var result = flyweight.round(number);
             log.Text = result;
             setupJson(flyweight.goodPlayers, flyweight.badPlayers);
         }

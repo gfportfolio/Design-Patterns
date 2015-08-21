@@ -13,49 +13,49 @@ namespace gfdesignpatterns.flyweight {
     public partial class FlyweightDemo {
         
         /// <summary>
-        /// Woody control.
+        /// Button0 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Woody;
+        protected global::System.Web.UI.WebControls.Button Button0;
         
         /// <summary>
-        /// Marida control.
+        /// Button1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Marida;
+        protected global::System.Web.UI.WebControls.Button Button1;
         
         /// <summary>
-        /// Dash control.
+        /// Button2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Dash;
+        protected global::System.Web.UI.WebControls.Button Button2;
         
         /// <summary>
-        /// Lightning control.
+        /// Button3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Lightning;
+        protected global::System.Web.UI.WebControls.Button Button3;
         
         /// <summary>
-        /// Sully control.
+        /// Button4 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Sully;
+        protected global::System.Web.UI.WebControls.Button Button4;
         
         /// <summary>
         /// log control.

@@ -8,22 +8,22 @@
     The computer will choose a evil enemy who you will battle.</h4>
     <div class="btn-group btn-group-justified">
         <div class="btn-group" role="group">
-            <asp:Button ID="Woody" runat="server" OnClick="playerButton_Click" class="btn btn-success" Text="Woody" />
+            <asp:Button ID="Button0" runat="server" OnClick="playerButton_Click" class="btn btn-success" Text="Attacker 1" />
         </div>
         <div class="btn-group" role="group">
-            <asp:Button ID="Marida" runat="server" OnClick="playerButton_Click" class="btn btn-success" Text="Marida" />
+            <asp:Button ID="Button1" runat="server" OnClick="playerButton_Click" class="btn btn-success" Text="Attacker 2" />
 
         </div>
         <div class="btn-group" role="group">
-            <asp:Button ID="Dash" runat="server" OnClick="playerButton_Click" class="btn btn-success" Text="Dash" />
+            <asp:Button ID="Button2" runat="server" OnClick="playerButton_Click" class="btn btn-success" Text="Attacker 3" />
 
         </div>
         <div class="btn-group" role="group">
-            <asp:Button ID="Lightning" runat="server" OnClick="playerButton_Click" class="btn btn-success" Text="Lightning" />
+            <asp:Button ID="Button3" runat="server" OnClick="playerButton_Click" class="btn btn-success" Text="Attacker 4" />
 
         </div>
         <div class="btn-group" role="group">
-            <asp:Button ID="Sully" runat="server" OnClick="playerButton_Click" class="btn btn-success" Text="Sully" />
+            <asp:Button ID="Button4" runat="server" OnClick="playerButton_Click" class="btn btn-success" Text="Attacker 5" />
 
         </div>
     </div>
@@ -32,6 +32,7 @@
             <h1>Good</h1>
             <div ng-repeat="player in goodPlayers">
                 <h3>
+              
                     <img ng-src="{{player.image}}" class="flighweight_image_small img-circle" />
                     {{player.name}}: Life {{player.life}} :Strength {{player.strength}}</h3>
             </div>
