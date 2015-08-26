@@ -23,14 +23,14 @@ namespace gfdesignpatterns.flyweight
             Flyweight.reset();
             var flyweight = Flyweight.Instance;
             
-            setupJson(flyweight.goodPlayers, flyweight.badPlayers);
+            setupJson(flyweight.goodPlayers, flyweight.badPlayers, flyweight);
 
         }
 
-        private void setupJson(List<flyweight.player> good, List<flyweight.player> bad)
+        private void setupJson(List<flyweight.player> good, List<flyweight.player> bad, Flyweight flyweight)
         {
-            JsonGoodPlayers = JsonConvert.SerializeObject(good);
-            JsonBadPlayers = JsonConvert.SerializeObject(bad);
+            JsonGoodPlayers = generateJsonFromFlyweightPlayers(good, flyweight);
+            JsonBadPlayers = generateJsonFromFlyweightPlayers(bad, flyweight);
         }
 
         protected void playerButton_Click(object sender, EventArgs e)
@@ -40,7 +40,29 @@ namespace gfdesignpatterns.flyweight
             var flyweight = Flyweight.Instance;
             var result = flyweight.round(number);
             log.Text = result;
-            setupJson(flyweight.goodPlayers, flyweight.badPlayers);
+            setupJson(flyweight.goodPlayers, flyweight.badPlayers, flyweight);
         }
+
+
+        public string generateJsonFromFlyweightPlayers(List<flyweight.player> players, Flyweight flyweight)
+        {
+            var pocos = new List<flyweightPoco>();
+            foreach (var player in players){
+                var poco = new flyweightPoco();
+                poco.name = player.name;
+                poco.image = flyweight.flyweightPlayers[player.name].image;
+                poco.life = player.life;
+                poco.strength = flyweight.flyweightPlayers[player.name].strength;
+                pocos.Add(poco);
+            }
+            return JsonConvert.SerializeObject(pocos);
+        }
+        protected class flyweightPoco{
+            public string name;
+            public string image;
+            public int life;
+            public int strength;
+            }
+
     }
 }
