@@ -30,11 +30,11 @@ namespace gfdesignpatterns.builder
             director.construct(shortBuilder, "Presto", "2008", "Alec Azam");
             shows.Add(shortBuilder.getResult());
 
-            director.construct(shortBuilder, "Inside Out", "2015", "Joy");
-            shows.Add(shortBuilder.getResult());
+            director.construct(movieBuilder, "Inside Out", "2015", "Joy");
+            shows.Add(movieBuilder.getResult());
 
-            director.construct(shortBuilder, "Finding Nemo", "2003", "Nemo, Merlin");
-            shows.Add(shortBuilder.getResult());
+            director.construct(movieBuilder, "Finding Nemo", "2003", "Nemo, Merlin");
+            shows.Add(movieBuilder.getResult());
 
             return shows;
 

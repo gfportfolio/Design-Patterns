@@ -4,9 +4,9 @@ class Notifier
 	if movieInfo.ended 
 		puts "#{movieInfo.name} in theatre number #{movieInfo.theatreNumber} ended"
 	elsif movieInfo.started 
-		puts "#{movieInfo.name} in theatre number #{movieInfo.theatreNumber} starts at #{movieInfo.startTime}"
-	else 
 		puts "#{movieInfo.name} in theatre number #{movieInfo.theatreNumber} started at #{movieInfo.startTime}"
+	else 
+		puts "#{movieInfo.name} in theatre number #{movieInfo.theatreNumber} starts at #{movieInfo.startTime}"
 	end
 	end
 end
@@ -62,5 +62,6 @@ wreckItRalfMovie.start()
 puts "\n"
 cinderellaMovie.start()
 puts "\n"
+#puts insideOutMovie.count_observers()
 insideOutMovie.removeObserver()
 insideOutMovie.end()

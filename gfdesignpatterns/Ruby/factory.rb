@@ -25,7 +25,7 @@ class Movie < Show
 		@movieNames = ["Toy", "Story", "A", "Bug's", "Life", "2", "Monsters", "Inc.", "Finding", "Nemo", "The", "Incredibles", "Cars", "Ratatouille", "WALL-E", "Up", "3", "Brave", "University", "Inside", "Out"]
 
 		rand = Random.new()
-		repeatTimes = rand.rand(5)
+		repeatTimes = rand.rand(5)+1
 		arraySize = @movieNames.length
 		randomName = ""
 		while repeatTimes>0
@@ -46,7 +46,7 @@ class Short < Show
 		@shortNames = ["The", "Adventures", "of", "Andre", "and", "Wally", "Luxo", "Jr", "Reds", "Dream", "Tin", "Toy", "Knick", "Knack", "Geris", "Game", "For", "Birds", "Boundin", "One", "Man", "Band", "Lifted", "Presto", "Partly", "Cloudy", "Day", "and", "Night", "La", "Luna", "Blue", "Umbrella", "Lava", "Sanjays", "Super", "Team", "Mike's", "New", "Car", "JackJack", "Attack", "Mater", "Ghostlight", "Your", "Friend", "Rat", "BURNE", "Dugs", "Special", "Mission", "George", "AJ", "Legend", "Mordu", "Party", "Central"]
 
 		rand = Random.new()
-		repeatTimes = rand.rand(5)
+		repeatTimes = rand.rand(5)+1
 		arraySize = @shortNames.length
 		randomName = ""
 		while repeatTimes>0
