@@ -13,10 +13,15 @@ namespace gfdesignpatterns
         protected void Page_Load(object sender, EventArgs e)
         {
             var dictionary = new twoKeyDictionary();
-            dictionary.add("inch", "feet", 12);
-            dictionary.add("feet", "mile", 5280);
+            dictionary.add("feet", "inch", 12);
+            dictionary.add("mile", "feet", 5280);
 
             var result = dictionary.convert("inch", "mile", 1);
+            result = dictionary.convert("inch", "feet", 10);
+            result = dictionary.convert("feet", "mile", 2);
+            result = dictionary.convert("mile", "inch", 1);
+            result = dictionary.convert("inch", "inch", 1);
+
         }
 
         protected void Unnamed_Click(object sender, EventArgs e)
