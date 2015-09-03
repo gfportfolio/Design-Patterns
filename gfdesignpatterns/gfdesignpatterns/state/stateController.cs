@@ -5,13 +5,7 @@ using System.Web;
 
 namespace gfdesignpatterns.state
 {
-    public class stateController
-    {
-    }
-
-
-
-    public class twoKeyDictionary
+      public class twoKeyDictionary
     {
         private static twoKeyDictionary _manager;
         public static twoKeyDictionary Instance
@@ -30,11 +24,11 @@ namespace gfdesignpatterns.state
             }
         }
 
-        public Dictionary<string, State> convertionDictionary;
+        public Dictionary<string, Operator> convertionDictionary;
 
         public twoKeyDictionary()
         {
-            convertionDictionary = new Dictionary<string, State>();
+            convertionDictionary = new Dictionary<string, Operator>();
         }
 
         public void add(string key1, string key2, double value)
@@ -47,14 +41,14 @@ namespace gfdesignpatterns.state
 
         public void addEntry(string key1, string key2, double value)
         {
-            State currentDictionaryState;
+            Operator currentDictionaryState;
             if (convertionDictionary.ContainsKey(key1))
             {
                 currentDictionaryState = convertionDictionary[key1];
             }
             else
             {
-                currentDictionaryState = new State();
+                currentDictionaryState = new Operator();
                 convertionDictionary.Add(key1, currentDictionaryState);
             }
             if (!currentDictionaryState.operations.ContainsKey(key2))
@@ -62,6 +56,7 @@ namespace gfdesignpatterns.state
                 currentDictionaryState.operations.Add(key2, value);
             }
         }
+
 
         public string convert(string from, string to, double value)
         {
@@ -116,10 +111,25 @@ namespace gfdesignpatterns.state
         }
     }
 
-
-    public class State
+    public class OperationVisitor
     {
-        public Dictionary<String, double> operations = new Dictionary<string, double>();
-        public bool visited = false;
+        private string _from;
+        private string _to;
+        private double _value;
+        private List<string> visited;
+        public OperationVisitor(string from, string to, double value)
+        {
+            _from = from;
+            _to = to;
+            _value = value;
+            visited = new List<string>();
+        }
+
+
+    }
+
+    public class Operator
+    {
+        public Dictionary<string, double> operations = new Dictionary<string, double>();
     }
 }
