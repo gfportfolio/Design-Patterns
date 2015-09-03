@@ -30,31 +30,49 @@ namespace gfdesignpatterns.state
             }
         }
 
-        public List<Operation> convertionDictionary;
+        public Dictionary<string, State> convertionDictionary;
 
         public twoKeyDictionary()
         {
-            convertionDictionary = new List<Operation>();
+            convertionDictionary = new Dictionary<string, State>();
         }
 
         public void add(string key1, string key2, double value)
         {
-            convertionDictionary.Add(new Operation { from = key1, to = key2, OperatorValue = value, visited = false });
-            convertionDictionary.Add(new Operation { from = key2, to = key1, OperatorValue = 1 / value, visited = false });
-            //convertionDictionary.Add( new Operation { from = key2, to = key2, OperatorValue = 1, visited = false });
-            //convertionDictionary.Add( new Operation { from = key1, to = key1, OperatorValue = 1, visited = false });
+            addEntry(key1, key2, value);
+            addEntry(key2, key1, 1 / value);
+            addEntry(key1, key1, 1);
+            addEntry(key2, key2, 1);
+        }
+
+        public void addEntry(string key1, string key2, double value)
+        {
+            State currentDictionaryState;
+            if (convertionDictionary.ContainsKey(key1))
+            {
+                currentDictionaryState = convertionDictionary[key1];
+            }
+            else
+            {
+                currentDictionaryState = new State();
+                convertionDictionary.Add(key1, currentDictionaryState);
+            }
+            if (!currentDictionaryState.operations.ContainsKey(key2))
+            {
+                currentDictionaryState.operations.Add(key2, value);
+            }
         }
 
         public string convert(string from, string to, double value)
         {
             foreach (var entry in convertionDictionary)
             {
-                entry.visited = false;
+                entry.Value.visited = false;
             }
-            if (from.Equals(to))
-            {
-                return "1.0";
-            }
+            //if (from.Equals(to))
+            //{
+            //    return "1.0";
+            //}
             var resultDouble = converterTool(from, to, value);
             if (resultDouble != null)
             {
@@ -69,51 +87,39 @@ namespace gfdesignpatterns.state
 
         public double? converterTool(string from, string to, double value)
         {
-            var newDictionary = convertionDictionary.Where(t => t.from.Equals(from) && t.visited == false);
-            var currentNewDictionary = newDictionary.ToList();
-            if (newDictionary.Count() > 0)
+            if (!convertionDictionary.ContainsKey(from) || convertionDictionary[from].visited == true)
             {
-                var values = new List<double?>();
-                foreach (var entry in newDictionary)
-                {
-                    entry.visited = true;
-                    if (entry.to.Equals(to))
-                    {
-                        values.Add(entry.OperatorValue);
-                    }
+                return null;
+            }
 
-                }
-                var possibleValueList = values.Where(t => t != null).Distinct();
-                if (possibleValueList.Distinct().Count() ==0)
+            var values = new List<double?>();
+            var currentState = convertionDictionary[from];
+            currentState.visited = true;
+            if (currentState.operations.ContainsKey(to))
+            {
+                values.Add(currentState.operations[to]);
+            }
+            var possibleValueList = values.Where(t => t != null).Distinct();
+            if (possibleValueList.Distinct().Count() == 0)
+            {
+                foreach (var opperation in currentState.operations)
                 {
-                    foreach (var entry in currentNewDictionary)
-                    {
-                        var recersConvert = converterTool(entry.to, to, value);
-                        values.Add(recersConvert != null ? (recersConvert * entry.OperatorValue) : null);
-                    }
-                }
-
-                possibleValueList = values.Where(t => t != null).Distinct();
-                if (possibleValueList.Distinct().Count() == 0)
-                {
-                    return null;
-                }
-                else
-                {
-                    return possibleValueList.ElementAt(0) * value;
+                    values.Add(converterTool(opperation.Key, to, opperation.Value));
                 }
             }
+            if (possibleValueList.Distinct().Count() != 0)
+            {
+                return possibleValueList.ElementAt(0) * value;
+            }
+
             return null;
         }
     }
 
 
-    public class Operation
+    public class State
     {
-        public string to;
-        public string from;
-        public double OperatorValue;
-        public bool visited;
+        public Dictionary<String, double> operations = new Dictionary<string, double>();
+        public bool visited = false;
     }
-
 }
