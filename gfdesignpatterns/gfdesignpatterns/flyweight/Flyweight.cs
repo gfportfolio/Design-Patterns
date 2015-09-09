@@ -9,6 +9,8 @@ namespace gfdesignpatterns.flyweight
     public class Flyweight
     {
         //flyweight Objects
+        public Dictionary<string, flyweightPlayer> flyweightPlayers = new Dictionary<string, flyweightPlayer>();
+
         public static List<pawnPOCO> pawns = new List<pawnPOCO>{
             new pawnPOCO("Hamm", false,"http://a.dilcdn.com/bl/wp-content/uploads/sites/2/2013/07/HammPirate.jpg"),
             new pawnPOCO("Witch", false,  "http://cdn04.cdn.justjaredjr.com/wp-content/uploads/headlines/2012/06/meet-brave-witch.jpg"),
@@ -22,7 +24,6 @@ namespace gfdesignpatterns.flyweight
             new pawnPOCO("Sully", true,  "http://img3.wikia.nocookie.net/__cb20130414194442/disney/images/3/3b/Sully.png")
         };
 
-        public Dictionary<string, flyweightPlayer> flyweightPlayers = new Dictionary<string, flyweightPlayer>();
 
         public static Flyweight _flyweight;
         public List<player> players;

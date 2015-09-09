@@ -80,7 +80,7 @@
     <Content Include="mainCss.css" />
     <Content Include="observer\ObserverDemo.aspx" />
     <Content Include="singleton\SingletonDemo.aspx" />
-    <Content Include="state\state.aspx" />
+    <Content Include="visitor\visitor.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -146,14 +146,14 @@
     <Compile Include="singleton\SingletonDemo.aspx.designer.cs">
       <DependentUpon>SingletonDemo.aspx</DependentUpon>
     </Compile>
-    <Compile Include="state\state.aspx.cs">
-      <DependentUpon>state.aspx</DependentUpon>
+    <Compile Include="visitor\visitor.aspx.cs">
+      <DependentUpon>visitor.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="state\state.aspx.designer.cs">
-      <DependentUpon>state.aspx</DependentUpon>
+    <Compile Include="visitor\visitor.aspx.designer.cs">
+      <DependentUpon>visitor.aspx</DependentUpon>
     </Compile>
-    <Compile Include="state\stateController.cs" />
+    <Compile Include="visitor\visitorController.cs" />
   </ItemGroup>
   <ItemGroup />
   <PropertyGroup>

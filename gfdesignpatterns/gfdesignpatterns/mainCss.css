@@ -23,3 +23,7 @@ img.flighweight_image_small{
     height:50px;
     width:50px;
 }
+.table th, .table td { 
+     border-top: none !important; 
+
+ }
